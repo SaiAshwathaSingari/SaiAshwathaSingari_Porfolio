@@ -49,9 +49,11 @@ const Home = () => {
             <span 
               className="cursor-default transition-all duration-300 ease-out text-transparent hover:text-purple-600 block sm:inline"
               style={{ 
-                // Improved stroke for high-quality display
-                WebkitTextStroke: '1.5px rgba(255,255,255,0.8)',
-                paintOrder: 'stroke fill'
+                // Increased stroke weight for mobile specifically using a CSS variable or direct value
+                // WebkitTextStroke handles the "A" issue better when set slightly thicker on small screens
+                WebkitTextStroke: window.innerWidth < 640 ? '1px rgba(255,255,255,0.9)' : '1.5px rgba(255,255,255,0.8)',
+                paintOrder: 'stroke fill',
+                textRendering: 'optimizeLegibility'
               }}
               onMouseEnter={(e) => {
                 if (window.innerWidth > 768) {
