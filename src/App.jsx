@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar.jsx";
 import Education from "./pages/Education.jsx";
 import Experience from "./pages/Experience.jsx";
 import Projects from "./pages/Projects.jsx";
+import Skills from "./pages/Skills.jsx";
+import Coding from "./pages/Coding.jsx";
 function App() {
   return (
    <>
@@ -15,6 +17,8 @@ function App() {
      <Route path="/education"  element={<Education/>}/>
      <Route path="/experience" element={<Experience/>}/>
      <Route path="/projects" element={<Projects/>}/>
+     <Route path="/skills" element={<Skills/>}/>
+     <Route path="/coding" element={<Coding/>}/>
    </Routes>
    </>
   );
