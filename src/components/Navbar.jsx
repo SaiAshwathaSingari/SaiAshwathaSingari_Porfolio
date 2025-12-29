@@ -62,7 +62,6 @@ const Navbar = () => {
         whileTap={{ scale: 0.95 }}
         className="flex items-center"
       >
-        {/* Mobile: Reduced padding (px-1.5) and tighter tracking (tracking-tighter) */}
         <span className="bg-white text-black px-1.5 md:px-2 py-1 text-lg md:text-2xl font-black italic tracking-tighter uppercase transition-colors group-hover:bg-purple-600 group-hover:text-white">
           Sai Ashwatha
         </span>
@@ -109,7 +108,6 @@ const Navbar = () => {
       }`}>
         <Logo />
         
-        {/* Mobile: Slightly smaller trigger button (w-10 h-10) */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className="bg-white text-black w-10 h-10 flex items-center justify-center shadow-2xl active:scale-90 transition-transform"
@@ -128,7 +126,11 @@ const Navbar = () => {
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="fixed inset-0 bg-black z-[110] md:hidden h-[100dvh] overflow-y-auto"
           >
-            <div className="min-h-full flex flex-col justify-center px-8 py-20">
+            {/* Added justify-between and explicit padding to prevent cutting off */}
+            <div className="min-h-full flex flex-col justify-between px-8 py-10">
+              {/* Top Spacer to account for the header logo/button */}
+              <div className="h-20" />
+
               <div className="flex flex-col gap-6">
                 {navLinks.map((link, i) => (
                   <motion.div
@@ -146,22 +148,22 @@ const Navbar = () => {
                     </Link>
                   </motion.div>
                 ))}
-                
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4 }}
-                  className="mt-12"
-                >
-                  <div className="h-1 w-12 bg-purple-600 mb-6" />
-                  <a 
-                    href="mailto:singarisai777@gmail.com"
-                    className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500"
-                  >
-                    SAY HELLO —
-                  </a>
-                </motion.div>
               </div>
+              
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="mt-12 pb-6"
+              >
+                <div className="h-1 w-12 bg-purple-600 mb-6" />
+                <a 
+                  href="mailto:singarisai777@gmail.com"
+                  className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500"
+                >
+                  SAY HELLO —
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}
