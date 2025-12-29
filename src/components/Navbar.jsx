@@ -38,21 +38,31 @@ const Navbar = () => {
 
   const handleNavClick = (e, href) => {
     setIsOpen(false);
-    if (href.startsWith('/#')) {
-      e.preventDefault();
-      const targetId = href.replace('/#', '');
-      if (location.pathname === '/') {
-        const element = document.getElementById(targetId);
-        element?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        navigate('/');
-        setTimeout(() => {
-          const element = document.getElementById(targetId);
-          element?.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+    if (href === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+
+  const Logo = () => (
+    <Link 
+      to="/" 
+      onClick={(e) => handleNavClick(e, '/')}
+      className="group flex items-center gap-0"
+    >
+      <motion.div 
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="flex items-center"
+      >
+        <span className="bg-white text-black px-2 py-1 text-xl md:text-2xl font-black italic tracking-tighter uppercase transition-colors group-hover:bg-purple-600 group-hover:text-white">
+          Sai Ashwatha
+        </span>
+        <span className="border-2 border-white text-white px-2 py-0.5 text-xl md:text-2xl font-black italic tracking-tighter uppercase group-hover:border-purple-600 transition-colors">
+          .
+        </span>
+      </motion.div>
+    </Link>
+  );
 
   return (
     <>
@@ -60,65 +70,63 @@ const Navbar = () => {
       <nav className={`fixed top-0 w-full z-[100] hidden md:block transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
       } ${
-        scrolled ? 'bg-black/90 backdrop-blur-md py-5 border-b border-white/10' : 'bg-transparent py-12'
+        scrolled ? 'bg-black/95 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-10'
       }`}>
         <div className="max-w-[1800px] mx-auto px-12 flex justify-between items-center">
-          <Link to="/" className="text-4xl font-black italic tracking-tighter hover:text-purple-500 transition-all duration-300">
-            ASHWATHA.
-          </Link>
+          <Logo />
           
-          <div className="flex items-center gap-12">
+          <div className="flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm font-black uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-all group relative"
+                className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-400 hover:text-white transition-all group relative"
               >
                 {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-purple-500 transition-all duration-300 ease-out group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-purple-500 transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
         </div>
       </nav>
 
-      {/* MOBILE TRIGGER */}
-      <div className={`fixed top-8 right-8 z-[120] md:hidden transition-all duration-400 ease-[cubic-bezier(0.19,1,0.22,1)] ${
-        isVisible || isOpen ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0 pointer-events-none'
+      {/* MOBILE HEADER (Logo + Trigger) */}
+      <div className={`fixed top-0 left-0 w-full z-[120] md:hidden flex justify-between items-center px-6 py-6 transition-transform duration-400 ${
+        isVisible || isOpen ? 'translate-y-0' : '-translate-y-full'
       }`}>
+        <Logo />
+        
         <button 
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-white text-black w-16 h-16 flex items-center justify-center shadow-2xl active:scale-90 transition-transform"
+          className="bg-white text-black w-12 h-12 flex items-center justify-center shadow-2xl active:scale-90 transition-transform"
         >
-          {isOpen ? <X size={32} strokeWidth={2.5} /> : <Menu size={32} strokeWidth={2.5} />}
+          {isOpen ? <X size={24} strokeWidth={3} /> : <Menu size={24} strokeWidth={3} />}
         </button>
       </div>
 
-      {/* MOBILE OVERLAY - FASTER TRANSITION */}
+      {/* MOBILE OVERLAY */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            // Faster timing: 0.4s with a sharp ease-out
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="fixed inset-0 bg-black z-[110] md:hidden flex flex-col justify-center px-8"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  // Staggered items also faster
                   transition={{ delay: 0.05 + i * 0.05, duration: 0.3 }}
                 >
                   <Link
                     to={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-7xl font-black italic tracking-tighter uppercase text-white active:text-purple-600 transition-colors leading-[0.9]"
+                    className="text-6xl font-black italic tracking-tighter uppercase text-white active:text-purple-600 transition-colors leading-none"
                   >
                     {link.name}
                   </Link>
@@ -129,12 +137,12 @@ const Navbar = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="mt-16"
+                className="mt-12"
               >
-                <div className="h-[3px] w-20 bg-purple-600 mb-8" />
+                <div className="h-1 w-12 bg-purple-600 mb-6" />
                 <a 
                   href="mailto:singarisai777@gmail.com"
-                  className="text-sm font-black uppercase tracking-[0.4em] text-zinc-500"
+                  className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500"
                 >
                   SAY HELLO —
                 </a>
