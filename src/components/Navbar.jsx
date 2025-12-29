@@ -126,9 +126,10 @@ const Navbar = () => {
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="fixed inset-0 bg-black z-[110] md:hidden h-[100dvh] overflow-y-auto"
           >
-            {/* Added justify-between and explicit padding to prevent cutting off */}
-            <div className="min-h-full flex flex-col justify-between px-8 py-10">
-              {/* Top Spacer to account for the header logo/button */}
+            {/* CHANGE: Added 'max-w-[85%] mx-auto' to the inner container 
+                to reduce width and prevent text from getting cut off.
+            */}
+            <div className="min-h-full max-w-[88%] mx-auto flex flex-col justify-between py-10">
               <div className="h-20" />
 
               <div className="flex flex-col gap-6">
