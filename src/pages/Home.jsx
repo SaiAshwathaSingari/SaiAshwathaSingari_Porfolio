@@ -28,14 +28,14 @@ const Home = () => {
   return (
     <div className="relative min-h-screen bg-black text-white font-sans selection:bg-purple-600 selection:text-white overflow-x-hidden">
       
-      {/* Background Watermark - Fixed position so it doesn't push content */}
+      {/* Background Watermark */}
       <div className="absolute top-0 left-0 w-full h-screen flex items-center justify-center z-0 pointer-events-none">
         <h2 className="text-[40vw] lg:text-[35vw] font-black text-white/[0.015] italic leading-none tracking-tighter uppercase select-none">
           MOVE
         </h2>
       </div>
 
-      {/* HERO SECTION - Removed h-screen to close the gap */}
+      {/* HERO SECTION */}
       <main className="relative z-10 container mx-auto px-6 sm:px-12 pt-40 md:pt-64 pb-20 flex flex-col justify-start">
         
         {/* Name Section */}
@@ -50,23 +50,26 @@ const Home = () => {
             <span 
               className="cursor-default transition-all duration-500 ease-out block sm:inline"
               style={{ 
-                color: 'transparent',
-                WebkitTextStroke: '1px rgba(255,255,255,0.3)',
-                ...(window.innerWidth < 640 ? {
-                  WebkitTextStroke: '1px white',
-                  opacity: 0.9
-                } : {})
+                /* PC VERSION: Transparent with light stroke */
+                color: window.innerWidth < 640 ? 'white' : 'transparent',
+                WebkitTextStroke: window.innerWidth < 640 ? '0px' : '1px rgba(255,255,255,0.3)',
+                /* MOBILE FIX: Use text-shadow instead of stroke to keep letter 'A' clean */
+                textShadow: window.innerWidth < 640 
+                  ? 'none' 
+                  : 'none',
+                textRendering: 'optimizeLegibility'
               }}
               onMouseEnter={(e) => {
                 if (window.innerWidth > 768) {
-                  e.target.style.WebkitTextStroke = '1px #9333ea';
-                  e.target.style.textShadow = '0 0 30px rgba(147, 51, 234, 0.3)';
+                  /* PC HOVER: Solid white fill like other elements */
+                  e.target.style.color = 'white';
+                  e.target.style.WebkitTextStroke = '1px white';
                 }
               }}
               onMouseLeave={(e) => {
                 if (window.innerWidth > 768) {
+                  e.target.style.color = 'transparent';
                   e.target.style.WebkitTextStroke = '1px rgba(255,255,255,0.3)';
-                  e.target.style.textShadow = 'none';
                 }
               }}
             >
@@ -87,7 +90,7 @@ const Home = () => {
         </div>
       </main>
 
-      {/* FEATURE SECTION - Now sits directly under the Typewriter */}
+      {/* FEATURE SECTION */}
       <section className="relative z-10">
         <Feature />
       </section>
