@@ -12,7 +12,7 @@ const Home = () => {
   const typeRef = useRef(null);
 
   useEffect(() => {
-    const roles = ["DEVELOPER", "ENGINEER", "AGENTIC AI ENTHUSIAST", "SYSTEMS PROGRAMMER"];
+    const roles = ["DEVELOPER", "ENGINEER", "AGENTIC AI ENTHUSIAST"];
     let mainTl = gsap.timeline({ repeat: -1 });
 
     roles.forEach((role) => {
