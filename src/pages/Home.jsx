@@ -1,162 +1,117 @@
-import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { gsap } from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
-import Tilt from "react-parallax-tilt";
-import clsx from "clsx";
-import { Github, Linkedin, Mail, Sparkles, Terminal, Cpu } from "lucide-react";
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
+import { ChevronRight, ArrowUpRight } from 'lucide-react';
 
-gsap.registerPlugin(TextPlugin);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(TextPlugin);
+}
 
 const Home = () => {
   const typeRef = useRef(null);
 
   useEffect(() => {
-    const roles = ["Full Stack Developer", "UI/UX Designer", "Creative Coder"];
-    const mainTimeline = gsap.timeline({ repeat: -1 });
+    const roles = ["DEVELOPER", "ENGINEER", "AGENTIC AI ENTHUSIAST", "SYSTEMS PROGRAMMER"];
+    let mainTl = gsap.timeline({ repeat: -1 });
 
     roles.forEach((role) => {
-      const tl = gsap.timeline({
-        repeat: 1,
-        yoyo: true,
-        repeatDelay: 1.2,
-      });
-
-      tl.to(typeRef.current, {
-        duration: 1.2,
-        text: role,
-        ease: "power1.inOut",
-      });
-
-      mainTimeline.add(tl);
+      mainTl.to(typeRef.current, { duration: 0.8, text: role, ease: "none" })
+      .to({}, { duration: 1.5 })
+      .to(typeRef.current, { duration: 0.5, text: "", ease: "none" })
+      .to({}, { duration: 0.2 });
     });
+
+    return () => mainTl.kill();
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#030014] text-slate-200 overflow-x-hidden">
-      {/* Background blobs */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-900/30 rounded-full blur-[80px]" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-indigo-900/30 rounded-full blur-[80px]" />
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-fuchsia-900/20 rounded-full blur-[80px]" />
+    <div className="relative min-h-screen bg-black text-white font-sans overflow-hidden select-none">
+      
+      {/* Background Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center z-0 overflow-hidden">
+        <h2 className="text-[40vw] lg:text-[35vw] font-black text-white/[0.01] italic leading-none tracking-tighter uppercase pointer-events-none">
+          MOVE
+        </h2>
       </div>
 
-      <main className="relative z-10 container mx-auto px-4 pt-24 pb-32">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-
-          {/* Status badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/5 text-purple-300 text-xs mb-6"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75 animate-ping"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-            </span>
-            Available for Projects
-          </motion.div>
-
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <main className="relative z-10 container mx-auto px-6 sm:px-12 h-screen flex flex-col justify-center">
+        
+        {/* Name Section */}
+        <div className="relative">
+          <motion.h1 
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[15vw] sm:text-[12vw] lg:text-[10vw] leading-[0.85] font-black tracking-tighter uppercase italic"
           >
-            <h2 className="text-lg uppercase tracking-widest text-zinc-400 mb-2">
-              Welcome to my world
-            </h2>
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold leading-tight mb-6">
-              Hi, I am <br />
-              <span className="bg-gradient-to-b from-white via-purple-200 to-purple-500 bg-clip-text text-transparent italic">
-                Singari Sai Ashwatha
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* Typing text */}
-          <div className="h-12 flex items-center justify-center mb-10">
-            <p className="text-xl sm:text-3xl text-zinc-400">
-              A passionate{" "}
-              <span
-                ref={typeRef}
-                className="text-purple-400 font-semibold border-r-2 border-purple-500 ml-1"
-              />
-            </p>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-20">
-            <button className="px-10 py-4 bg-purple-600 hover:bg-purple-500 text-white rounded-full font-bold transition-transform hover:scale-105">
-              Explore Portfolio
-            </button>
-            <button className="px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full">
-              Resume.pdf
-            </button>
-          </div>
-
-          {/* Services */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-            <ServiceCard
-              icon={<Terminal size={24} />}
-              title="Frontend Dev"
-              desc="React, Next.js, smooth UI animations."
-              color="border-purple-500/20"
-            />
-            <ServiceCard
-              icon={<Cpu size={24} />}
-              title="Backend Logic"
-              desc="APIs, databases, system design."
-              color="border-indigo-500/20"
-            />
-            <ServiceCard
-              icon={<Sparkles size={24} />}
-              title="UX/UI Design"
-              desc="Clean and modern Figma designs."
-              color="border-fuchsia-500/20"
-            />
-          </div>
+            SINGARI <br />
+            <span 
+              className="cursor-default transition-all duration-300 ease-out text-transparent hover:text-purple-600 block sm:inline"
+              style={{ 
+                // Improved stroke for high-quality display
+                WebkitTextStroke: '1.5px rgba(255,255,255,0.8)',
+                paintOrder: 'stroke fill'
+              }}
+              onMouseEnter={(e) => {
+                if (window.innerWidth > 768) {
+                  e.target.style.WebkitTextStroke = '1.5px #9333ea';
+                  e.target.style.textShadow = '0 0 30px rgba(147, 51, 234, 0.4)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (window.innerWidth > 768) {
+                  e.target.style.WebkitTextStroke = '1.5px rgba(255,255,255,0.8)';
+                  e.target.style.textShadow = 'none';
+                }
+              }}
+            >
+              SAI ASHWATHA
+            </span>
+          </motion.h1>
         </div>
+
+        {/* Backspacing Role Section */}
+        <div className="mt-8 flex flex-wrap items-baseline gap-3 min-h-[2.5rem]">
+          <span className="text-xl sm:text-3xl font-light text-zinc-600 italic shrink-0">
+            I AM A
+          </span>
+          <span 
+            ref={typeRef} 
+            className="text-xl sm:text-3xl font-black text-white uppercase italic tracking-tighter inline-block"
+          ></span>
+        </div>
+
+        {/* Action Buttons */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-16 flex flex-col sm:flex-row items-start sm:items-center gap-6"
+        >
+          <button className="w-full sm:w-auto group relative overflow-hidden bg-white text-black px-12 py-5 font-black uppercase tracking-tighter text-lg transition-transform hover:scale-105 active:scale-95">
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              VIEW WORK <ChevronRight size={20} strokeWidth={4} />
+            </span>
+            <div className="absolute inset-0 bg-purple-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </button>
+
+          <button className="flex items-center gap-2 border-b-4 border-white pb-1 font-black uppercase tracking-tighter text-lg hover:text-purple-500 hover:border-purple-500 transition-all text-white">
+            GET IN TOUCH <ArrowUpRight size={20} />
+          </button>
+        </motion.div>
       </main>
 
-      {/* Social bar */}
-      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-        <div className="flex gap-8 px-8 py-4 bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl">
-          <SocialLink icon={<Github size={22} />} />
-          <SocialLink icon={<Linkedin size={22} />} />
-          <SocialLink icon={<Mail size={22} />} />
-        </div>
-      </nav>
+      {/* Sidebar Branding */}
+      <div className="fixed right-6 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-12 items-center">
+        <p className="rotate-90 text-[10px] font-black tracking-[0.5em] text-zinc-700 uppercase origin-center w-max mb-12">
+          SINGARI SAI ASHWATHA
+        </p>
+        <div className="h-24 w-[1px] bg-white/10" />
+      </div>
+
     </div>
   );
 };
-
-const ServiceCard = ({ icon, title, desc, color }) => (
-  <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable glareMaxOpacity={0.1}>
-    <div
-      className={clsx(
-        "p-6 rounded-3xl bg-white/5 border backdrop-blur-sm h-full transition hover:bg-white/10",
-        color
-      )}
-    >
-      <div className="p-3 rounded-2xl bg-purple-500/10 text-purple-400 mb-4">
-        {icon}
-      </div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-zinc-400 text-sm">{desc}</p>
-    </div>
-  </Tilt>
-);
-
-const SocialLink = ({ icon }) => (
-  <motion.a
-    whileHover={{ y: -3, scale: 1.1 }}
-    whileTap={{ scale: 0.9 }}
-    href="/"
-    className="text-zinc-400 hover:text-purple-400"
-  >
-    {icon}
-  </motion.a>
-);
 
 export default Home;
