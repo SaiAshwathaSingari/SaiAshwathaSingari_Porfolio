@@ -126,24 +126,24 @@ const Navbar = () => {
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="fixed inset-0 bg-black z-[110] md:hidden h-[100dvh] overflow-y-auto"
           >
-            {/* CHANGE: Added 'max-w-[85%] mx-auto' to the inner container 
-                to reduce width and prevent text from getting cut off.
+            {/* FIX: max-w-[80%] ensures text never hits the sides.
+                font size 'text-5xl' fits longer words like 'Experience' better.
             */}
-            <div className="min-h-full max-w-[88%] mx-auto flex flex-col justify-between py-10">
+            <div className="min-h-full max-w-[82%] mx-auto flex flex-col justify-between py-10">
               <div className="h-20" />
 
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-5">
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
-                    initial={{ opacity: 0, x: 30 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 + i * 0.05, duration: 0.3 }}
                   >
                     <Link
                       to={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="text-6xl font-black italic tracking-tighter uppercase text-white active:text-purple-600 transition-colors leading-none block"
+                      className="text-5xl font-black italic tracking-tighter uppercase text-white active:text-purple-600 transition-colors leading-[0.9] block"
                     >
                       {link.name}
                     </Link>
@@ -157,12 +157,13 @@ const Navbar = () => {
                 transition={{ delay: 0.4 }}
                 className="mt-12 pb-6"
               >
-                <div className="h-1 w-12 bg-purple-600 mb-6" />
+                <div className="h-[2px] w-10 bg-purple-600 mb-4" />
                 <a 
                   href="mailto:singarisai777@gmail.com"
-                  className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500"
+                  className="text-[9px] font-black uppercase tracking-[0.3em] text-zinc-500 block"
                 >
-                  SAY HELLO —
+                  SAY HELLO — <br/>
+                  <span className="text-zinc-300">SINGARISAI777@GMAIL.COM</span>
                 </a>
               </motion.div>
             </div>
