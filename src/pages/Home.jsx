@@ -12,7 +12,7 @@ const Home = () => {
   const typeRef = useRef(null);
 
   useEffect(() => {
-    const roles = ["DEVELOPER", "ENGINEER", "AGENTIC AI ENTHUSIAST"];
+    const roles = ["A DEVELOPER", "AN ENGINEER", "AN AGENTIC AI ENTHUSIAST"];
     let mainTl = gsap.timeline({ repeat: -1 });
 
     roles.forEach((role) => {
@@ -81,7 +81,7 @@ const Home = () => {
         {/* Typewriter Section */}
         <div className="mt-8 sm:mt-10 flex flex-wrap items-baseline gap-3 min-h-[3rem]">
           <span className="text-xl sm:text-3xl font-light text-zinc-600 italic shrink-0 tracking-tight uppercase">
-            I AM A
+            I AM
           </span>
           <span 
             ref={typeRef} 
