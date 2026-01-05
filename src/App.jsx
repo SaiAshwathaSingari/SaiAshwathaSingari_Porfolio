@@ -7,6 +7,7 @@ import Experience from "./pages/Experience.jsx";
 import Projects from "./pages/Projects.jsx";
 import Skills from "./pages/Skills.jsx";
 import Coding from "./pages/Coding.jsx";
+import Contact from "./pages/Contact.jsx";
 function App() {
   return (
    <>
@@ -19,6 +20,7 @@ function App() {
      <Route path="/projects" element={<Projects/>}/>
      <Route path="/skills" element={<Skills/>}/>
      <Route path="/coding" element={<Coding/>}/>
+     <Route path="/contact" element={<Contact/>}/>
    </Routes>
    </>
   );

@@ -36,12 +36,14 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
+  // ADDED CONTACT LINK HERE
   const navLinks = [
     { name: 'Education', href: '/education' },
     { name: 'Experience', href: '/experience' },
     { name: 'Projects', href: '/projects' },
     { name: 'Coding', href: '/coding' },
     { name: 'Skills', href: '/skills' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const handleNavClick = (e, href) => {
@@ -126,9 +128,6 @@ const Navbar = () => {
             transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="fixed inset-0 bg-black z-[110] md:hidden h-[100dvh] overflow-y-auto"
           >
-            {/* FIX: max-w-[80%] ensures text never hits the sides.
-                font size 'text-5xl' fits longer words like 'Experience' better.
-            */}
             <div className="min-h-full max-w-[82%] mx-auto flex flex-col justify-between py-10">
               <div className="h-20" />
 
