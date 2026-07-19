@@ -1,3 +1,177 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-950 text-white font-sans antialiased;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand text-ink-950;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4ca62c;
+  }
+
+  /* Hide native cursor on precise pointers (custom cursor takes over) */
+  @media (pointer: fine) {
+    body.has-custom-cursor,
+    body.has-custom-cursor * {
+      cursor: none !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-16;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent;
+  }
+  .text-gradient-brand {
+    @apply bg-gradient-to-br from-brand-cyan via-brand-light to-brand bg-clip-text text-transparent;
+  }
+
+  /* Glass surface */
+  .glass {
+    @apply border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  }
+
+  /* Outlined display text (webkit stroke) */
+  .text-stroke {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+    color: transparent;
+  }
+  .text-stroke-brand {
+    -webkit-text-stroke: 1.5px rgba(126, 217, 87, 0.55);
+    color: transparent;
+  }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500;
+  }
+
+  /* Green-apple glow for hero/accents */
+  .glow-brand {
+    text-shadow: 0 0 40px rgba(126, 217, 87, 0.45),
+      0 0 80px rgba(126, 217, 87, 0.2);
+  }
+
+  /* Portugal-red treatment for the No.7 mark */
+  .text-gradient-red {
+    @apply bg-gradient-to-br from-[#ff5a5f] via-[#e11d2a] to-[#a10f18] bg-clip-text text-transparent;
+  }
+  .glow-red {
+    text-shadow: 0 0 40px rgba(225, 29, 42, 0.5),
+      0 0 90px rgba(225, 29, 42, 0.28);
+  }
+
+  /* Kicker chip / jersey tag */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-md;
+  }
+  .chip-brand {
+    @apply inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light backdrop-blur-md;
+  }
+
+  /* Primary / ghost buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink-950 transition-colors hover:bg-brand-light;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:bg-brand/10;
+  }
+}
+
+@layer utilities {
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Football-pitch line grid used behind sporty sections */
+  .pitch-lines {
+    background-image: linear-gradient(
+        to right,
+        rgba(126, 217, 87, 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(126, 217, 87, 0.06) 1px, transparent 1px);
+    background-size: 90px 90px;
+  }
+
+  /* Diagonal jersey/tape stripes */
+  .tape {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(126, 217, 87, 0.12) 0 12px,
+      transparent 12px 24px
+    );
+  }
+
+  /* Grab cursor helper for draggable rows (custom cursor still overrides on fine pointers) */
+  .cursor-grab-x {
+    cursor: grab;
+  }
+  .cursor-grab-x:active {
+    cursor: grabbing;
+  }
+}

@@ -1,16 +1,67 @@
-# React + Vite
+# Sai Ashwatha Singari — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, single-page portfolio built as a product, not a template. Dark theme, choreographed motion, custom cursor, smooth scrolling, and a performance-minded build.
 
-Currently, two official plugins are available:
+**Live sections:** Hero · About · Experience · Skills · Work · Education · Achievements · Contact
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- **React 19** + **Vite 7** — fast SPA tooling with code-splitting
+- **Tailwind CSS 3** — design system (custom theme, fonts, keyframes)
+- **Framer Motion** — entrance, reveal, and micro-interactions
+- **GSAP + ScrollTrigger** — scroll-synced timeline animation
+- **Lenis** — smooth scrolling
+- **react-parallax-tilt** — 3D tilt project cards
+- **lucide-react** — icons · **sonner** — toasts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev      # start dev server
+npm run build    # production build → dist/
+npm run preview  # preview the production build
+npm run lint     # lint the project
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```
+src/
+  App.jsx                 # composition + preloader orchestration (sections lazy-loaded)
+  main.jsx                # entry
+  index.css               # Tailwind layers, global styles, utilities
+  data/portfolio.js       # ← ALL content lives here (edit this to update the site)
+  hooks/useSmoothScroll.js
+  lib/utils.js            # cn() class helper
+  components/             # Navbar, Footer, Cursor, Preloader, SmoothScroll,
+                          # AnimatedBackground, ScrollProgress, MagneticButton,
+                          # Reveal, SectionHeading
+  sections/              # Hero, About, Experience, Skills, Projects,
+                          # Education, Achievements, Contact
+```
+
+## Editing Content
+
+All copy, links, experience, skills, projects, education, and achievements are
+defined in **`src/data/portfolio.js`**. Update that one file to change the site.
+
+### Things to personalize
+
+- **Resume:** replace `public/resume.pdf` with your real resume (same filename).
+- **LinkedIn:** update the LinkedIn URL in `socials` (`portfolio.js`) with your
+  exact profile slug.
+- **Project links:** the project `links.code` / `links.live` currently point to
+  the GitHub profile — swap in real repo/demo URLs when available.
+
+## Design Notes
+
+- Fully responsive, dark, accessible (reduced-motion aware — animations and the
+  custom cursor gracefully disable for users who prefer reduced motion).
+- Vendor code is split into cacheable chunks (`react`, `motion`, `gsap`, `ui`)
+  and below-the-fold sections are lazy-loaded for a fast initial paint.
+
+## Deployment
+
+Configured for Vercel (`vercel.json`). Any static host works — deploy the
+`dist/` folder produced by `npm run build`.
