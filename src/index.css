@@ -37,7 +37,7 @@
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #4ca62c;
+    background: #4fd42a;
   }
 
   /* Hide native cursor on precise pointers (custom cursor takes over) */
@@ -70,21 +70,20 @@
     @apply bg-gradient-to-br from-white via-white to-white/40 bg-clip-text text-transparent;
   }
   .text-gradient-brand {
-    @apply bg-gradient-to-br from-brand-cyan via-brand-light to-brand bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-brand-mint via-brand to-brand-dark bg-clip-text text-transparent;
   }
 
-  /* Glass surface */
+  /* Frosted-glass bento card surface */
   .glass {
-    @apply border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+    @apply border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl;
+  }
+  .card-surface {
+    @apply rounded-[22px] border border-white/[0.08] bg-card/60 backdrop-blur-xl;
   }
 
-  /* Outlined display text (webkit stroke) */
+  /* Outlined display text */
   .text-stroke {
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
-    color: transparent;
-  }
-  .text-stroke-brand {
-    -webkit-text-stroke: 1.5px rgba(126, 217, 87, 0.55);
     color: transparent;
   }
 
@@ -93,32 +92,22 @@
     @apply inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500;
   }
 
-  /* Green-apple glow for hero/accents */
+  /* Soft (non-neon) Apple-green glow */
   .glow-brand {
-    text-shadow: 0 0 40px rgba(126, 217, 87, 0.45),
-      0 0 80px rgba(126, 217, 87, 0.2);
+    text-shadow: 0 0 32px rgba(124, 255, 79, 0.4), 0 0 72px rgba(57, 255, 136, 0.18);
   }
 
-  /* Portugal-red treatment for the No.7 mark */
-  .text-gradient-red {
-    @apply bg-gradient-to-br from-[#ff5a5f] via-[#e11d2a] to-[#a10f18] bg-clip-text text-transparent;
-  }
-  .glow-red {
-    text-shadow: 0 0 40px rgba(225, 29, 42, 0.5),
-      0 0 90px rgba(225, 29, 42, 0.28);
-  }
-
-  /* Kicker chip / jersey tag */
+  /* Kicker chips */
   .chip {
     @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-300 backdrop-blur-md;
   }
   .chip-brand {
-    @apply inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light backdrop-blur-md;
+    @apply inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light backdrop-blur-md;
   }
 
   /* Primary / ghost buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink-950 transition-colors hover:bg-brand-light;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink-950 transition-all hover:bg-brand-light hover:shadow-[0_0_30px_-6px_rgba(124,255,79,0.6)];
   }
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:bg-brand/10;
@@ -143,31 +132,47 @@
     );
   }
 
-  .grain {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Subtle dotted grid backdrop (Vercel/Linear feel) */
+  .grid-dots {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
   }
 
-  /* Football-pitch line grid used behind sporty sections */
-  .pitch-lines {
-    background-image: linear-gradient(
-        to right,
-        rgba(126, 217, 87, 0.06) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, rgba(126, 217, 87, 0.06) 1px, transparent 1px);
-    background-size: 90px 90px;
+  /* Cursor spotlight overlay driven by --mx / --my CSS vars */
+  .spotlight {
+    position: relative;
+  }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      340px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(124, 255, 79, 0.12),
+      transparent 62%
+    );
+  }
+  .spotlight:hover::before {
+    opacity: 1;
   }
 
-  /* Diagonal jersey/tape stripes */
-  .tape {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      rgba(126, 217, 87, 0.12) 0 12px,
-      transparent 12px 24px
+  /* Green light trail / connector helper */
+  .trail-line {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(124, 255, 79, 0.35),
+      transparent
     );
   }
 
-  /* Grab cursor helper for draggable rows (custom cursor still overrides on fine pointers) */
   .cursor-grab-x {
     cursor: grab;
   }

@@ -5,20 +5,26 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["'Space Grotesk'", "Inter", "system-ui", "sans-serif"],
+        display: ["Geist", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
+        // Matte-black base
         ink: {
-          950: "#060709",
-          900: "#0b0d10",
-          800: "#12151a",
+          950: "#09090B",
+          900: "#0c0c0f",
+          800: "#111318",
         },
-        // Green-apple identity. Change these to re-skin the whole site.
+        // Bento card surface
+        card: {
+          DEFAULT: "#111827",
+          light: "#161f31",
+        },
+        // Apple-green identity. Re-skin the whole site from here.
         brand: {
-          DEFAULT: "#7ed957",
-          light: "#a7f37f",
-          dark: "#4ca62c",
-          cyan: "#c6f24e",
+          DEFAULT: "#7CFF4F",
+          light: "#a6ff86",
+          dark: "#4fd42a",
+          mint: "#39FF88",
         },
       },
       letterSpacing: {
@@ -48,11 +54,12 @@ export default {
         shimmer: {
           "100%": { transform: "translateX(100%)" },
         },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.45" },
+          "50%": { opacity: "1" },
+        },
         "spin-slow": {
           to: { transform: "rotate(360deg)" },
-        },
-        "spin-rev": {
-          to: { transform: "rotate(-360deg)" },
         },
       },
       animation: {
@@ -62,8 +69,8 @@ export default {
         float: "float 6s ease-in-out infinite",
         "pulse-ring": "pulse-ring 2.5s cubic-bezier(0.4,0,0.6,1) infinite",
         shimmer: "shimmer 2s infinite",
+        "glow-pulse": "glow-pulse 4s ease-in-out infinite",
         "spin-slow": "spin-slow 18s linear infinite",
-        "spin-rev": "spin-rev 24s linear infinite",
       },
     },
   },
