@@ -9,7 +9,7 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-    const duration = reduced ? 300 : 1900;
+    const duration = reduced ? 300 : 1100;
     const start = performance.now();
     let raf = 0;
 

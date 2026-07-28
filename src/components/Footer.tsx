@@ -59,7 +59,7 @@ export default function Footer() {
           <span>
             © {year} {profile.fullName}
           </span>
-          <span>Built with React · Three.js · GSAP · Framer Motion</span>
+          <span>Built with React · TypeScript · GSAP · Framer Motion</span>
         </div>
       </div>
     </footer>

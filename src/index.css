@@ -73,12 +73,24 @@
     @apply bg-gradient-to-br from-brand-mint via-brand to-brand-dark bg-clip-text text-transparent;
   }
 
-  /* Bento card surface — opaque (no backdrop-blur) so scrolling stays smooth */
+  /* Apple-glass bento surface. The glass read comes from a top-light sheen,
+     an inset 1px highlight, and a soft depth shadow — pure paint, no
+     backdrop-filter, so scrolling stays perfectly smooth. */
   .glass {
-    @apply border border-white/[0.08] bg-[#0e1420]/80;
+    @apply border border-white/[0.09];
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02) 45%),
+      rgba(13, 19, 30, 0.72);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09);
   }
   .card-surface {
-    @apply rounded-[22px] border border-white/[0.08] bg-[#0e1420]/80;
+    @apply rounded-[22px] border border-white/[0.09];
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02) 45%),
+      rgba(13, 19, 30, 0.72);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.09),
+      0 24px 48px -28px rgba(0, 0, 0, 0.6);
   }
 
   /* Outlined display text */
@@ -97,12 +109,14 @@
     text-shadow: 0 0 32px rgba(124, 255, 79, 0.4), 0 0 72px rgba(57, 255, 136, 0.18);
   }
 
-  /* Kicker chips */
+  /* Kicker chips — same glass treatment at small scale */
   .chip {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-300;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-300;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   .chip-brand {
     @apply inline-flex items-center gap-2 rounded-full border border-brand/30 bg-brand/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-light;
+    box-shadow: inset 0 1px 0 rgba(124, 255, 79, 0.18);
   }
 
   /* Primary / ghost buttons */
@@ -110,7 +124,8 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-ink-950 transition-all hover:bg-brand-light hover:shadow-[0_0_30px_-6px_rgba(124,255,79,0.6)];
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:bg-brand/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white transition-colors hover:border-brand hover:bg-brand/10;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
 }
 

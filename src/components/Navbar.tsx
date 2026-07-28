@@ -65,7 +65,7 @@ export default function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-[150] transition-[padding,background,border] duration-500",
           scrolled
-            ? "border-b border-white/[0.08] bg-ink-950/80 py-3 backdrop-blur-md"
+            ? "border-b border-white/[0.08] bg-ink-950/70 py-3 backdrop-blur-md backdrop-saturate-150"
             : "border-b border-transparent py-5"
         )}
       >

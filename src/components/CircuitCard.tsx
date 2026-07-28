@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const TRACES = [
   "M10 30 H60 V70 H120",
@@ -28,9 +29,13 @@ const NODES = [
 ];
 
 // Decorative animated "circuit board" with pulses running along the traces.
+// Animations only run while the card is on screen.
 export default function CircuitCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "10% 0px 10% 0px" });
+
   return (
-    <div className="pointer-events-none absolute inset-0">
+    <div ref={ref} className="pointer-events-none absolute inset-0">
       <svg
         viewBox="0 0 320 180"
         preserveAspectRatio="xMidYMid slice"
@@ -62,14 +67,13 @@ export default function CircuitCard() {
             pathLength={1}
             strokeDasharray="0.18 0.82"
             initial={{ strokeDashoffset: 1 }}
-            animate={{ strokeDashoffset: [1, -1] }}
+            animate={inView ? { strokeDashoffset: [1, -1] } : { strokeDashoffset: 1 }}
             transition={{
               duration: 3.4 + (i % 4) * 0.6,
-              repeat: Infinity,
+              repeat: inView ? Infinity : 0,
               ease: "linear",
               delay: i * 0.35,
             }}
-            style={{ filter: "drop-shadow(0 0 3px rgba(124,255,79,0.8))" }}
           />
         ))}
         {/* Solder nodes */}
@@ -81,10 +85,10 @@ export default function CircuitCard() {
             r={2.4}
             fill="#39FF88"
             initial={{ opacity: 0.3 }}
-            animate={{ opacity: [0.3, 1, 0.3] }}
+            animate={inView ? { opacity: [0.3, 1, 0.3] } : { opacity: 0.3 }}
             transition={{
               duration: 2.6,
-              repeat: Infinity,
+              repeat: inView ? Infinity : 0,
               ease: "easeInOut",
               delay: (i % 6) * 0.3,
             }}

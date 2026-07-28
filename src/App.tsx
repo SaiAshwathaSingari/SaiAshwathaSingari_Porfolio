@@ -22,11 +22,21 @@ const Education = lazy(() => import("./sections/Education"));
 const Achievements = lazy(() => import("./sections/Achievements"));
 const Contact = lazy(() => import("./sections/Contact"));
 
-// 3D particle background is heavy; load it lazily and skip for reduced motion.
-const ParticleField = lazy(() => import("./components/three/ParticleField"));
+// Decorative particle background — skipped on mobile and for reduced motion.
+const ParticleField = lazy(() => import("./components/ParticleField"));
+
+const PRELOAD_KEY = "sas-preloaded";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  // Show the intro preloader only on the first visit of a session; repeat
+  // views (and in-app reloads) go straight to content.
+  const [loading, setLoading] = useState(() => {
+    try {
+      return sessionStorage.getItem(PRELOAD_KEY) !== "1";
+    } catch {
+      return true;
+    }
+  });
   const reduceMotion = useReducedMotion();
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const show3DBackground = isDesktop && !reduceMotion;
@@ -42,7 +52,17 @@ export default function App() {
     <SmoothScroll>
       <AnimatePresence mode="wait">
         {loading && (
-          <Preloader key="preloader" onComplete={() => setLoading(false)} />
+          <Preloader
+            key="preloader"
+            onComplete={() => {
+              setLoading(false);
+              try {
+                sessionStorage.setItem(PRELOAD_KEY, "1");
+              } catch {
+                /* private mode — just show it again next time */
+              }
+            }}
+          />
         )}
       </AnimatePresence>
 

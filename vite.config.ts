@@ -13,12 +13,6 @@ export default defineConfig({
           react: ["react", "react-dom"],
           motion: ["framer-motion"],
           gsap: ["gsap"],
-          three: [
-            "three",
-            "@react-three/fiber",
-            "@react-three/drei",
-            "@react-three/postprocessing",
-          ],
           ui: ["lucide-react", "sonner"],
         },
       },
