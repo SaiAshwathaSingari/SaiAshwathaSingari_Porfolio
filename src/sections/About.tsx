@@ -67,7 +67,7 @@ export default function About() {
           </Reveal>
 
           {/* Location */}
-          <Reveal delay={0.05} className="col-span-2 lg:col-span-2">
+          <Reveal delay={0.05} className="col-span-2 lg:col-span-4">
             <SpotlightCard className="flex h-full items-center justify-between p-7">
               <div>
                 <span className="eyebrow">

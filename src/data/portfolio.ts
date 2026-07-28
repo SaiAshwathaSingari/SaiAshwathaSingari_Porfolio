@@ -131,8 +131,6 @@ export const about: About = {
   ],
   stats: [
     { value: "8.77", label: "CGPA · 10.0" },
-    { value: "247K", label: "Packets/sec · Sentinel" },
-    { value: "3", label: "Featured projects" },
     { value: "2027", label: "Graduating class" },
   ],
   focus: ["Software Engineering", "C++ / Systems", "Full-Stack", "Generative AI"],

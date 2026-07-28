@@ -24,7 +24,7 @@ function ExperienceItem({ exp, i }: { exp: ExperienceType; i: number }) {
       <Reveal>
         <SpotlightCard className="p-6 md:p-9" data-cursor="hover">
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-            <div className="flex items-start gap-4 md:gap-5">
+            <div className="flex flex-col items-start gap-4 sm:flex-row md:gap-5">
               {exp.logo && (
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white p-2.5 shadow-lg shadow-black/30 ring-1 ring-white/10 md:h-16 md:w-16">
                   <img
@@ -36,7 +36,7 @@ function ExperienceItem({ exp, i }: { exp: ExperienceType; i: number }) {
                 </div>
               )}
 
-              <div>
+              <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="chip-brand">{exp.duration}</span>
                   {exp.current && (
@@ -55,7 +55,7 @@ function ExperienceItem({ exp, i }: { exp: ExperienceType; i: number }) {
                   )}
                 </div>
 
-                <h3 className="mt-4 font-display text-3xl font-bold tracking-tight md:text-4xl">
+                <h3 className="mt-4 break-words font-display text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
                   {exp.company}
                 </h3>
                 {exp.parent && (
