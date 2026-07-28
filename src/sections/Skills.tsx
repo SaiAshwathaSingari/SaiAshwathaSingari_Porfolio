@@ -10,7 +10,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative py-24 md:py-32">
       <div className="container-x">
-        <SectionHeading index="04" label="Skills" title="The" accentWord="Toolkit" />
+        <SectionHeading index="03" label="Skills" title="The" accentWord="Toolkit" />
 
         {/* Featured circuit tile */}
         <Reveal className="mb-4">
@@ -21,18 +21,18 @@ export default function Skills() {
                 <span className="h-px w-6 bg-brand/70" /> Full-stack range
               </span>
               <h3 className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                From the wire to the cloud.
+                From C++ systems to the browser.
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-                Comfortable across the stack — low-level systems and networking
-                through to modern web apps and cloud deployment.
+                Comfortable across the stack — performance-critical C++ and
+                systems work through to modern, full-stack web apps.
               </p>
             </div>
           </SpotlightCard>
         </Reveal>
 
         {/* Skill groups */}
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {skillGroups.map((group, gi) => (
             <Reveal key={group.category} delay={gi * 0.05}>
               <SpotlightCard className="h-full p-6" data-cursor="hover">

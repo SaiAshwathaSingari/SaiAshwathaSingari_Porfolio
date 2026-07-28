@@ -23,7 +23,9 @@ export default function AnimatedBackground() {
       current.x += (target.x - current.x) * 0.08;
       current.y += (target.y - current.y) * 0.08;
       if (spot) {
-        spot.style.background = `radial-gradient(600px circle at ${current.x}px ${current.y}px, rgba(124,255,79,0.1), transparent 60%)`;
+        // transform-only update: the compositor moves an already-painted
+        // radial layer, so there's no per-frame repaint of the viewport.
+        spot.style.transform = `translate3d(${current.x - 600}px, ${current.y - 600}px, 0)`;
       }
       raf = requestAnimationFrame(render);
     };
@@ -62,8 +64,16 @@ export default function AnimatedBackground() {
         }}
       />
 
-      {/* Cursor spotlight */}
-      <div ref={spotRef} className="absolute inset-0" />
+      {/* Cursor spotlight — a fixed 1200px radial layer moved via transform */}
+      <div
+        ref={spotRef}
+        className="absolute left-0 top-0 h-[1200px] w-[1200px] rounded-full will-change-transform"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(124,255,79,0.10), transparent 60%)",
+          transform: "translate3d(-600px, -600px, 0)",
+        }}
+      />
 
       {/* Vignette */}
       <div className="absolute inset-0 bg-gradient-to-b from-ink-950/0 via-ink-950/0 to-ink-950" />

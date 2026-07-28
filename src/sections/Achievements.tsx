@@ -17,7 +17,7 @@ export default function Achievements() {
     <section id="achievements" className="relative py-24 md:py-32">
       <div className="container-x">
         <SectionHeading
-          index="07"
+          index="06"
           label="Achievements"
           title="Milestones"
           accentWord="& Certs"

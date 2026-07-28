@@ -1,13 +1,10 @@
-import { Suspense, lazy, useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
 import { profile, socials } from "../data/portfolio";
 import { useSmoothScroll } from "../hooks/useSmoothScroll";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 import MagneticButton from "../components/MagneticButton";
 import { VelocityMarquee } from "../components/Marquee";
-
-const SolarSystem = lazy(() => import("../components/three/SolarSystem"));
 
 function RotatingRole() {
   const [index, setIndex] = useState(0);
@@ -20,7 +17,13 @@ function RotatingRole() {
   }, []);
 
   return (
-    <span className="relative inline-block h-[1.1em] overflow-hidden align-bottom">
+    // The invisible in-flow copy sizes the box and sits on the true text
+    // baseline; the animated word overlays it exactly, so alignment with
+    // "I'm a" is guaranteed by construction (no magic offsets).
+    <span className="relative inline-block overflow-hidden align-bottom">
+      <span aria-hidden="true" className="invisible whitespace-nowrap">
+        {profile.roles[index]}
+      </span>
       <AnimatePresence mode="wait">
         <motion.span
           key={index}
@@ -28,7 +31,7 @@ function RotatingRole() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: "-100%", opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-block text-gradient-brand"
+          className="absolute inset-0 whitespace-nowrap text-gradient-brand"
         >
           {profile.roles[index]}
         </motion.span>
@@ -47,9 +50,6 @@ const TICKER = [
 
 export default function Hero() {
   const { scrollTo } = useSmoothScroll();
-  const reduceMotion = useReducedMotion();
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const show3D = isDesktop && !reduceMotion;
 
   return (
     <section
@@ -94,7 +94,7 @@ export default function Hero() {
               </motion.span>
             </h1>
 
-            <div className="mt-7 font-display text-2xl font-medium tracking-tight text-zinc-300 sm:text-3xl">
+            <div className="mt-7 font-display text-2xl font-medium leading-[1.3] tracking-tight text-zinc-300 sm:text-3xl">
               I'm a <RotatingRole />
             </div>
 
@@ -170,7 +170,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: clean floating holographic sphere */}
+          {/* Right: clean floating glow orb */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -178,20 +178,12 @@ export default function Hero() {
             className="relative hidden aspect-square lg:block"
           >
             <div className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/15 blur-3xl" />
-            <div className="absolute inset-0">
-              {show3D ? (
-                <Suspense fallback={null}>
-                  <SolarSystem />
-                </Suspense>
-              ) : (
-                <div className="flex h-full items-center justify-center">
-                  <div className="relative grid h-56 w-56 place-items-center">
-                    <div className="h-14 w-14 rounded-full bg-gradient-to-br from-brand-mint to-brand-dark shadow-[0_0_40px_8px_rgba(124,255,79,0.5)]" />
-                    <div className="absolute h-32 w-32 rounded-full border border-brand/20" />
-                    <div className="absolute h-48 w-48 rounded-full border border-brand/10" />
-                  </div>
-                </div>
-              )}
+            <div className="flex h-full items-center justify-center">
+              <div className="relative grid h-56 w-56 place-items-center">
+                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-brand-mint to-brand-dark shadow-[0_0_50px_10px_rgba(124,255,79,0.5)]" />
+                <div className="absolute h-32 w-32 rounded-full border border-brand/20" />
+                <div className="absolute h-48 w-48 rounded-full border border-brand/10" />
+              </div>
             </div>
           </motion.div>
         </div>

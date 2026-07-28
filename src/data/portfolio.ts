@@ -12,7 +12,6 @@ export interface Profile {
   email: string;
   phone: string;
   resume: string;
-  formspree: string;
   tagline: string;
 }
 
@@ -104,18 +103,15 @@ export const profile: Profile = {
   roles: [
     "Software Engineer",
     "Full-Stack Developer",
-    "Cloud & Networking",
+    "C++ & Systems",
     "Problem Solver",
   ],
   location: "Manipal, India",
   email: "singarisai777@gmail.com",
   phone: "+91 80740 34506",
   resume: "/resume.pdf",
-  // Contact form: create a form at https://formspree.io, confirm your email,
-  // then paste your endpoint here (e.g. "https://formspree.io/f/abcdwxyz").
-  formspree: "https://formspree.io/f/your_form_id",
   tagline:
-    "Software Engineering student crafting reliable, high-performance products across software, networking, and cloud.",
+    "Computer & Communication Engineering student building reliable, high-performance software — from low-level C++ systems to full-stack web apps.",
 };
 
 export const socials: Social[] = [
@@ -127,19 +123,19 @@ export const socials: Social[] = [
 
 export const about: About = {
   headline:
-    "I build software that feels considered — from the wire to the interface.",
+    "I build software that feels considered — from low-level systems to the interface.",
   paragraphs: [
-    "I'm a Software Engineering student who loves turning hard problems into clean, dependable products. My curiosity runs the full stack — from routing packets across a network, to orchestrating services in the cloud, to shipping interfaces people actually enjoy using.",
-    "Right now I'm working as a Software Engineering Intern at NI (National Instruments), now part of Emerson, contributing to software for RF R&D applications. It's teaching me how large-scale, enterprise software is really built: rigorous code reviews, testing, Agile delivery, and writing code that teammates can trust and extend.",
-    "I care about the details that separate a template from a product — performance, accessibility, and the little interactions that make software feel alive. I'm looking to bring that same energy to a team building things at scale.",
+    "I'm a Computer & Communication Engineering student who enjoys turning hard problems into clean, dependable software. I like working across the stack — from performance-critical C++ systems to full-stack web apps that people actually enjoy using.",
+    "Right now I'm a Software Engineering Intern at NI (National Instruments), now part of Emerson, building high-performance C++ APIs and hardware drivers for RF signal instruments. It's teaching me how production software is really built — rigorous testing, code reviews, and code that teammates can trust and extend.",
+    "I care about the details that separate a template from a product: performance, reliability, and the small interactions that make software feel alive. I'm looking to bring that same energy to a team building things at scale.",
   ],
   stats: [
-    { value: "1+", label: "Year of internship experience" },
-    { value: "8.77", label: "CGPA / 10.0" },
-    { value: "15+", label: "Technologies in daily use" },
+    { value: "8.77", label: "CGPA · 10.0" },
+    { value: "247K", label: "Packets/sec · Sentinel" },
+    { value: "3", label: "Featured projects" },
     { value: "2027", label: "Graduating class" },
   ],
-  focus: ["Software Engineering", "Cloud", "Networking", "Product"],
+  focus: ["Software Engineering", "C++ / Systems", "Full-Stack", "Generative AI"],
 };
 
 export const experiences: Experience[] = [
@@ -149,36 +145,18 @@ export const experiences: Experience[] = [
     logo: "/logo-ni.svg",
     parentLogo: "/logo-emerson.png",
     role: "Software Engineering Intern",
-    duration: "Jul 2025 — Present",
+    duration: "Jul 2026 — Present",
     current: true,
-    location: "Software · RF R&D",
+    location: "RF R&D · C++",
     summary:
-      "Developing software solutions for RF (Radio Frequency) R&D applications inside an enterprise engineering organization, working alongside experienced software engineers and cross-functional teams.",
-    tags: ["Enterprise Software", "RF R&D", "Agile", "Code Reviews", "Testing"],
+      "Building high-performance C++ APIs and hardware drivers for RF Signal Acquisition (RFSA) and RF Signal Generation (RFSG) instruments — enabling compatibility with LabVIEW, NI software, and third-party applications.",
+    tags: ["C++", "Hardware Drivers", "RF Systems", "LabVIEW", "Testing", "Version Control"],
     highlights: [
-      "Developing software solutions for RF (Radio Frequency) R&D applications.",
-      "Writing clean, maintainable, and scalable code contributing to feature development and bug fixes.",
-      "Collaborating with experienced software engineers and cross-functional teams.",
-      "Debugging, testing, and improving software components; participating in code reviews.",
-      "Learning large-scale software development practices and engineering design processes.",
-      "Working in an Agile environment with modern development tools and engineering workflows.",
-    ],
-  },
-  {
-    company: "EmergX",
-    parent: "",
-    logo: "/logo-emergx.svg",
-    role: "Full-Stack Developer Intern",
-    duration: "Jul 2025 — Sep 2025",
-    location: "Remote",
-    summary:
-      "Engineered high-performance UI components and backend systems for an AI-driven interview intelligence platform.",
-    tags: ["React", "Node.js", "Express", "JWT", "Web Audio API", "Tailwind CSS"],
-    highlights: [
-      "Architected client-side microphone orchestration and real-time recording indicators using the Web Audio API.",
-      "Engineered scalable Node.js/Express APIs managing complex session lifecycles and secure audio streams.",
-      "Implemented JWT-based authentication and Google OAuth 2.0 integration for secure user sessions.",
-      "Optimized frontend state architecture, significantly reducing redundant network overhead.",
+      "Developing high-performance C++ APIs and hardware drivers for RFSA and RFSG instruments, enabling compatibility with LabVIEW, NI software, and third-party applications.",
+      "Building and maintaining production-grade software by implementing new features and debugging complex issues.",
+      "Validating hardware–software interactions and optimizing reliability across RF measurement systems.",
+      "Collaborating with cross-functional RF R&D engineers to design, test, and deliver robust engineering solutions.",
+      "Following industry-standard software development and version-control practices.",
     ],
   },
 ];
@@ -186,56 +164,44 @@ export const experiences: Experience[] = [
 export const skillGroups: SkillGroup[] = [
   {
     category: "Languages",
-    items: ["C++", "C", "Python", "Java", "JavaScript", "TypeScript"],
+    items: ["C", "C++", "Python", "Java", "JavaScript", "HTML", "CSS", "SQL"],
   },
   {
-    category: "Frontend",
-    items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS"],
-  },
-  {
-    category: "Backend",
-    items: ["Node.js", "Express"],
+    category: "Frameworks & Libraries",
+    items: ["React.js", "Node.js", "Express.js", "Tailwind CSS", "LangChain", "Socket.IO"],
   },
   {
     category: "Databases",
-    items: ["MySQL", "MongoDB"],
+    items: ["MongoDB", "MySQL"],
   },
   {
-    category: "Cloud",
-    items: ["AWS", "Azure"],
-  },
-  {
-    category: "Networking",
-    items: ["Cisco", "CCNA", "Network Design", "Routing", "Switching"],
-  },
-  {
-    category: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Linux", "Docker"],
+    category: "Tools & Fundamentals",
+    items: ["LabVIEW", "REST APIs", "JWT Auth", "Git", "Postman", "Generative AI", "Jupyter"],
   },
 ];
 
 // Marquee ticker of technologies for the skills band.
 export const techTicker: string[] = [
-  "C++", "Python", "Java", "TypeScript", "React", "Next.js", "Node.js",
-  "Express", "MongoDB", "MySQL", "AWS", "Azure", "Docker", "Linux",
-  "CCNA", "Cisco", "Git", "Tailwind CSS",
+  "C++", "C", "Python", "Java", "JavaScript", "React", "Node.js",
+  "Express", "Tailwind CSS", "LangChain", "Socket.IO", "MongoDB",
+  "MySQL", "LabVIEW", "REST APIs", "Git", "Postman", "Generative AI",
 ];
 
 export const projects: Project[] = [
   {
-    title: "Sentinel — DPI Threat Engine",
+    title: "Sentinel — Threat-Intelligence Engine",
     year: "2026",
     category: "Systems · C++ · Network Security",
     description:
-      "A dependency-free, multithreaded C++17 deep-packet-inspection engine that turns raw packet captures into threat intelligence — JA3 TLS fingerprinting, ML traffic classification, and real-time intrusion detection.",
+      "A multithreaded C++17 deep-packet-inspection engine that turns raw network traffic into threat intelligence — parsing Ethernet/IP/TCP/UDP with a lock-free worker pool at ~247K packets/sec.",
     features: [
-      "JA3 TLS fingerprinting from the ClientHello (GREASE-aware, custom MD5)",
-      "ML classifies encrypted traffic by flow shape alone — no SNI or port",
-      "6 threat detectors mapped to MITRE ATT&CK + live WebSocket SOC dashboard",
+      "JA3 TLS fingerprinting plus real-time detectors for port scans, DNS tunnelling, C2 beaconing, SYN floods, and cleartext credentials",
+      "Random Forest classifier that flags encrypted traffic from flow statistics alone",
+      "Structured telemetry streamed to a live WebSocket dashboard; Docker + GitHub Actions CI with unit tests",
     ],
     challenge:
-      "Designing a lock-free, sharded worker pipeline (reader → workers → analytics → writer) that sustains ~247K packets/sec while correlating threats across flows and hosts.",
-    tech: ["C++17", "Python", "scikit-learn", "Node.js", "WebSocket", "CMake"],
+      "Designing a lock-free, sharded worker pipeline that sustains ~247K packets/sec while correlating threats across flows and hosts.",
+    tech: ["C++17", "Python", "scikit-learn", "Node.js", "WebSocket", "Docker"],
     links: {
       live: "",
       code: "https://github.com/SaiAshwathaSingari/Sentinel",
@@ -243,15 +209,35 @@ export const projects: Project[] = [
     accent: "#7CFF4F",
   },
   {
+    title: "CVision — AI Resume Builder",
+    year: "2025",
+    category: "Full-Stack · MERN · AI",
+    description:
+      "A full-stack MERN resume builder with a high-performance editor — real-time side-by-side preview, section-wise editing, and multiple ATS-optimized themes.",
+    features: [
+      "LangChain-powered AI content generation, with ImageKit for automated background removal",
+      "Real-time, side-by-side preview and section-wise editing across ATS-friendly themes",
+      "Automated parsing for instant import plus high-fidelity PDF export that keeps formatting intact",
+    ],
+    challenge:
+      "Wiring an AI generation flow into a smooth editing experience while keeping exported output well-structured and pixel-consistent.",
+    tech: ["MongoDB", "Express", "React", "Node.js", "LangChain", "ImageKit"],
+    links: {
+      live: "",
+      code: "https://github.com/SaiAshwathaSingari/AI-Resume-Builder",
+    },
+    accent: "#39FF88",
+  },
+  {
     title: "InstaConnect — MERN Social App",
     year: "2025",
     category: "Full-Stack · MERN",
     description:
-      "A full-stack social-style application built on the MERN stack (MongoDB, Express, React/Vite, Node.js) with authentication, profiles, and an image-driven feed.",
+      "A full-stack social application built on the MERN stack (MongoDB, Express, React/Vite, Node.js) with authentication, profiles, and an image-driven feed.",
     features: [
-      "JWT auth with a secure Express/MongoDB API",
-      "Cloudinary image uploads and a social post feed",
-      "React (Vite) client + optional FastAPI microservice hook",
+      "JWT authentication backed by a secure Express/MongoDB API",
+      "Cloudinary image uploads powering a social post feed",
+      "React (Vite) client with an optional FastAPI microservice hook",
     ],
     challenge:
       "Wiring a clean client/server split with secure auth, media uploads, and environment-driven config across separate deployments.",
@@ -261,26 +247,6 @@ export const projects: Project[] = [
       code: "https://github.com/SaiAshwathaSingari/InstantConnect_MERN",
     },
     accent: "#34d399",
-  },
-  {
-    title: "AI Resume Builder",
-    year: "2025",
-    category: "Full-Stack · AI",
-    description:
-      "A full-stack AI resume builder that generates and refines polished, ATS-friendly resumes from a guided editor, with a React client and a Node/Express server.",
-    features: [
-      "AI-assisted content generation & refinement",
-      "Live editor with clean, exportable templates",
-      "React client + Node/Express server, deployed on Vercel",
-    ],
-    challenge:
-      "Wiring an AI generation flow into a smooth editing experience while keeping the output well-structured and export-ready.",
-    tech: ["React", "Node.js", "Express", "JavaScript", "Vercel"],
-    links: {
-      live: "",
-      code: "https://github.com/SaiAshwathaSingari/AI-Resume-Builder",
-    },
-    accent: "#39FF88",
   },
 ];
 
@@ -295,7 +261,7 @@ export const education: Education[] = [
     scoreScale: "/ 10.0 CGPA",
     status: "Current",
     notes:
-      "Coursework spanning software engineering, computer networks, operating systems, DBMS, and communication systems.",
+      "Relevant coursework: Data Structures & Algorithms, Object-Oriented Programming, DBMS, Computer Networks, Operating Systems, and Embedded Systems.",
   },
 ];
 
@@ -304,30 +270,18 @@ export const achievements: Achievement[] = [
     title: "Software Engineering Internship",
     org: "NI (National Instruments), now part of Emerson",
     type: "Internship",
-    year: "2025",
+    year: "2026",
   },
   {
-    title: "Full-Stack Developer Internship",
-    org: "EmergX — AI Interview Platform",
-    type: "Internship",
-    year: "2025",
-  },
-  {
-    title: "CCNA — Routing & Switching",
-    org: "Cisco Networking Academy",
+    title: "Node.js & MongoDB: Back-End Database Applications",
+    org: "Course Certificate",
     type: "Certification",
-    year: "2024",
+    year: "2025",
   },
   {
-    title: "2★ Competitive Programmer",
-    org: "CodeChef",
-    type: "Achievement",
-    year: "2024",
-  },
-  {
-    title: "Hackathon Participant",
-    org: "Inter-college Hackathons",
-    type: "Hackathon",
+    title: "JavaScript Programming Essentials",
+    org: "Course Certificate",
+    type: "Certification",
     year: "2024",
   },
 ];

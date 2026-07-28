@@ -131,7 +131,7 @@ export default function Experience() {
     <section id="experience" className="relative py-24 md:py-32">
       <div className="container-x">
         <SectionHeading
-          index="03"
+          index="02"
           label="Experience"
           title="Where"
           accentWord="I've Built"

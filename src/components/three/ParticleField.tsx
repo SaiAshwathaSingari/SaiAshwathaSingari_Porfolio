@@ -12,7 +12,7 @@ function createPositions(count: number) {
   return arr;
 }
 
-function Particles({ count = 2000 }: { count?: number }) {
+function Particles({ count = 1400 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
 
   const positions = useMemo(() => createPositions(count), [count]);
@@ -51,7 +51,8 @@ export default function ParticleField() {
     <Canvas
       camera={{ position: [0, 0, 6], fov: 60 }}
       dpr={[1, 1.5]}
-      gl={{ alpha: true, antialias: true }}
+      gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
+      performance={{ min: 0.5 }}
     >
       <Particles />
     </Canvas>

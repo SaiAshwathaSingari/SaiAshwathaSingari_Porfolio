@@ -1,20 +1,11 @@
-import { Suspense, lazy } from "react";
-import { useReducedMotion } from "framer-motion";
-import { MapPin, Sparkles } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { about, profile } from "../data/portfolio";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 import SectionHeading from "../components/SectionHeading";
 import { Reveal } from "../components/Reveal";
 import CountUp from "../components/CountUp";
 import SpotlightCard from "../components/SpotlightCard";
 
-const InitialsCube = lazy(() => import("../components/three/InitialsCube"));
-
 export default function About() {
-  const reduceMotion = useReducedMotion();
-  const isTablet = useMediaQuery("(min-width: 768px)");
-  const show3D = isTablet && !reduceMotion;
-
   return (
     <section id="about" className="relative py-24 md:py-32">
       <div className="container-x relative">
@@ -47,42 +38,10 @@ export default function About() {
             </SpotlightCard>
           </Reveal>
 
-          {/* 3D initials cube */}
-          <Reveal
-            delay={0.05}
-            className="col-span-2 lg:col-span-2 lg:row-span-2"
-          >
-            <SpotlightCard className="relative h-full min-h-[300px] p-0">
-              <div className="absolute -left-16 -top-16 h-52 w-52 rounded-full bg-brand/15 blur-3xl" />
-              <div className="absolute left-6 top-6 z-10 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500">
-                <Sparkles size={12} className="text-brand-light" /> Interactive
-              </div>
-              <div className="absolute inset-0">
-                {show3D ? (
-                  <Suspense fallback={null}>
-                    <InitialsCube initials={profile.initials} />
-                  </Suspense>
-                ) : (
-                  <div className="flex h-full items-center justify-center">
-                    <span className="font-display text-6xl font-bold text-gradient-brand">
-                      {profile.initials}
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="absolute bottom-6 left-6 z-10 text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500">
-                Hover to spin
-              </div>
-            </SpotlightCard>
-          </Reveal>
-
           {/* Stats */}
           {about.stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.05} className="col-span-1">
-              <SpotlightCard
-                className="h-full p-6"
-                data-cursor="hover"
-              >
+              <SpotlightCard className="h-full p-6" data-cursor="hover">
                 <CountUp
                   value={s.value}
                   className="block pr-[0.06em] font-display text-4xl font-bold tracking-tight text-gradient-brand md:text-5xl"
@@ -101,8 +60,8 @@ export default function About() {
                 <span className="h-px w-6 bg-brand/70" /> Currently
               </span>
               <p className="mt-4 font-display text-lg font-semibold leading-snug tracking-tight text-white">
-                B.Tech (CCE) @ Manipal Institute of Technology, building across
-                software, cloud &amp; networks.
+                B.Tech (CCE) @ Manipal Institute of Technology, building
+                high-performance software across systems and the web.
               </p>
             </SpotlightCard>
           </Reveal>

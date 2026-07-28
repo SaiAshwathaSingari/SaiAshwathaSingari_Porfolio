@@ -150,7 +150,7 @@ export default function Projects() {
     <section id="work" className="relative py-24 md:py-32">
       <div className="container-x">
         <SectionHeading
-          index="05"
+          index="04"
           label="Selected Work"
           title="Things"
           accentWord="I've Made"

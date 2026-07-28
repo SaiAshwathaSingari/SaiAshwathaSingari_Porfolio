@@ -10,7 +10,7 @@ export default function Education() {
     <section id="education" className="relative py-24 md:py-32">
       <div className="container-x">
         <SectionHeading
-          index="06"
+          index="05"
           label="Education"
           title="Where"
           accentWord="I Learn"

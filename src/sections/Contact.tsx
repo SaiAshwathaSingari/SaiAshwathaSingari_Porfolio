@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 md:py-32">
       <div className="container-x">
-        <SectionHeading index="08" label="Contact" title="Let's" accentWord="Talk" />
+        <SectionHeading index="07" label="Contact" title="Let's" accentWord="Talk" />
 
         <div className="grid gap-4 lg:grid-cols-3">
           {/* Pitch */}
@@ -44,7 +44,7 @@ export default function Contact() {
                 data-cursor="hover"
                 className="group/email flex h-full w-full items-center justify-between gap-4 rounded-[18px] px-5 py-6 text-left"
               >
-                <span className="min-w-0 truncate font-display text-2xl font-bold tracking-tight text-zinc-200 transition-colors group-hover/email:text-white sm:text-3xl">
+                <span className="min-w-0 truncate font-display text-lg font-bold tracking-tight text-zinc-200 transition-colors group-hover/email:text-white sm:text-2xl lg:text-3xl">
                   {profile.email}
                 </span>
                 <span className="flex shrink-0 items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-500 transition-colors group-hover/email:text-brand-light">
