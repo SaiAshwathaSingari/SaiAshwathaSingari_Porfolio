@@ -30,7 +30,7 @@ export default function SpotlightCard({
       ref={ref}
       onMouseMove={handleMove}
       className={cn(
-        "spotlight card-surface group relative overflow-hidden transition-colors duration-300 hover:border-brand/30",
+        "spotlight card-surface group relative overflow-hidden hover:border-brand/30",
         className
       )}
       {...props}

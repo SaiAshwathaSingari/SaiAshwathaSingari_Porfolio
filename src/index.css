@@ -12,7 +12,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {
@@ -40,12 +40,31 @@
     background: #4fd42a;
   }
 
-  /* Hide native cursor on precise pointers (custom cursor takes over) */
+  /* Hide native cursor on precise pointers (custom cursor takes over).
+     Restore the I-beam on editable fields so typing still feels native. */
   @media (pointer: fine) {
     body.has-custom-cursor,
     body.has-custom-cursor * {
       cursor: none !important;
     }
+    body.has-custom-cursor input,
+    body.has-custom-cursor textarea,
+    body.has-custom-cursor select,
+    body.has-custom-cursor [contenteditable="true"] {
+      cursor: text !important;
+    }
+  }
+
+  /* Register spotlight coords so the browser can interpolate them smoothly. */
+  @property --mx {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 50%;
+  }
+  @property --my {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 50%;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -159,6 +178,10 @@
   /* Cursor spotlight overlay driven by --mx / --my CSS vars */
   .spotlight {
     position: relative;
+    transition:
+      --mx 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      --my 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease;
   }
   .spotlight::before {
     content: "";
@@ -167,7 +190,7 @@
     border-radius: inherit;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.4s ease;
     background: radial-gradient(
       340px circle at var(--mx, 50%) var(--my, 50%),
       rgba(124, 255, 79, 0.12),

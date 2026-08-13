@@ -13,7 +13,7 @@ interface MagneticButtonProps {
 // Wraps children and gently pulls them toward the cursor on hover.
 export default function MagneticButton({
   as = "button",
-  strength = 0.4,
+  strength = 0.32,
   className,
   children,
   ...props
@@ -21,8 +21,8 @@ export default function MagneticButton({
   const ref = useRef<HTMLElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 200, damping: 15 });
-  const springY = useSpring(y, { stiffness: 200, damping: 15 });
+  const springX = useSpring(x, { stiffness: 420, damping: 28, mass: 0.55 });
+  const springY = useSpring(y, { stiffness: 420, damping: 28, mass: 0.55 });
 
   const handleMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = ref.current;

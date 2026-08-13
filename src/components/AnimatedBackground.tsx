@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { damp } from "../lib/motion";
 
 // Layered ambient background: drifting aurora orbs, a faint grid, and a
 // cursor-following green spotlight. Transform/paint only, so it stays cheap.
@@ -14,14 +15,17 @@ export default function AnimatedBackground() {
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const current = { ...target };
     let raf = 0;
+    let last = performance.now();
 
-    const onMove = (e: MouseEvent) => {
+    const onMove = (e: PointerEvent) => {
       target.x = e.clientX;
       target.y = e.clientY;
     };
-    const render = () => {
-      current.x += (target.x - current.x) * 0.08;
-      current.y += (target.y - current.y) * 0.08;
+    const render = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.048);
+      last = now;
+      current.x = damp(current.x, target.x, 8, dt);
+      current.y = damp(current.y, target.y, 8, dt);
       if (spot) {
         // transform-only update: the compositor moves an already-painted
         // radial layer, so there's no per-frame repaint of the viewport.
@@ -29,10 +33,10 @@ export default function AnimatedBackground() {
       }
       raf = requestAnimationFrame(render);
     };
-    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("pointermove", onMove, { passive: true });
     raf = requestAnimationFrame(render);
     return () => {
-      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("pointermove", onMove);
       cancelAnimationFrame(raf);
     };
   }, []);

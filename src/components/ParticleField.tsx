@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { damp } from "../lib/motion";
 
 interface Particle {
   x: number;
@@ -63,7 +64,7 @@ export default function ParticleField() {
 
     const target = { x: 0, y: 0 };
     const parallax = { x: 0, y: 0 };
-    const onMove = (e: MouseEvent) => {
+    const onMove = (e: PointerEvent) => {
       target.x = (e.clientX / width - 0.5) * 2;
       target.y = (e.clientY / height - 0.5) * 2;
     };
@@ -73,8 +74,8 @@ export default function ParticleField() {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
 
-      parallax.x += (target.x - parallax.x) * 0.03;
-      parallax.y += (target.y - parallax.y) * 0.03;
+      parallax.x = damp(parallax.x, target.x, 4, dt);
+      parallax.y = damp(parallax.y, target.y, 4, dt);
 
       ctx.clearRect(0, 0, width, height);
 
@@ -101,12 +102,12 @@ export default function ParticleField() {
 
     raf = requestAnimationFrame(frame);
     window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("pointermove", onMove, { passive: true });
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("pointermove", onMove);
     };
   }, []);
 
